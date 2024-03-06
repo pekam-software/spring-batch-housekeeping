@@ -1,25 +1,23 @@
-package org.pekam.springbatch.housekeeping.metadata.persistence;
+package org.pekam.springbatch.housekeeping.metadata.service;
 
 import org.pekam.springbatch.housekeeping.metadata.constants.ExecutionStatus;
 import org.pekam.springbatch.housekeeping.metadata.constants.Table;
 
 public class DeleteQueryFactory {
 
-    private static final String EMPTY_STRING = "";
-    private static final String CREATE_DATE_CONDITION = " AND CREATE_TIME <= ?";
+    private static final String CREATE_DATE_CONDITION = "AND CREATE_TIME <= ?";
     private static final String DEFAULT_TABLES_PREFIX = "BATCH_";
 
     public static String get(
             String springBatchTablesPrefix,
             Table table,
-            ExecutionStatus executionStatus,
-            boolean withRetentionDays
+            ExecutionStatus executionStatus
     ) {
         return String.format(
                 table.getDeleteQuery(),
                 sanitizePrefix(springBatchTablesPrefix),
                 executionStatus,
-                withRetentionDays ? CREATE_DATE_CONDITION : EMPTY_STRING
+                CREATE_DATE_CONDITION
         );
     }
 

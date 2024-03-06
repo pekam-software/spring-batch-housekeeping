@@ -4,8 +4,10 @@ spring:
   batch:
     housekeeping:
       metadata-tables:
-        enabled: true
-        retention-days: 30
+        cleaning-enabled-for-completed: true
+        cleaning-enabled-for-failed: true
+        retention-days-for-completed: 0
+        retention-days-for-failed: 30
         prefix: ""
         scheduler:
           cron: "*/5 * * ? * *"

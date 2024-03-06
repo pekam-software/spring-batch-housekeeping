@@ -2,7 +2,9 @@ package org.pekam.springbatch.housekeeping.metadata.scheduler;
 
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
-import org.pekam.springbatch.housekeeping.metadata.persistence.SpringBatchMetadataTableServiceImpl;
+import org.pekam.springbatch.housekeeping.metadata.config.CleaningSchedulerConfig;
+import org.pekam.springbatch.housekeeping.metadata.config.CleaningServiceConfig;
+import org.pekam.springbatch.housekeeping.metadata.service.SpringBatchMetadataTableServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +17,12 @@ import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(
-        classes = { DatabaseCleaningScheduler.class, SpringBatchMetadataTableServiceImpl.class }
+        classes = {
+                DatabaseCleaningScheduler.class,
+                SpringBatchMetadataTableServiceImpl.class,
+                CleaningServiceConfig.class,
+                CleaningSchedulerConfig.class
+        }
 )
 @EnableAutoConfiguration
 class DatabaseCleaningSchedulerTest {

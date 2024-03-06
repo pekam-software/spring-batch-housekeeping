@@ -1,6 +1,9 @@
 package org.pekam.springbatch.housekeeping.metadata.persistence;
 
 import org.junit.jupiter.api.Test;
+import org.pekam.springbatch.housekeeping.metadata.config.CleaningServiceConfig;
+import org.pekam.springbatch.housekeeping.metadata.service.SpringBatchMetadataTableService;
+import org.pekam.springbatch.housekeeping.metadata.service.SpringBatchMetadataTableServiceImpl;
 import org.springframework.batch.core.JobInstance;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(
-        classes = { SpringBatchMetadataTableServiceImpl.class }
+        classes = { SpringBatchMetadataTableServiceImpl.class, CleaningServiceConfig.class }
 )
 @EnableAutoConfiguration
 class SpringBatchMetadataTableServiceImplTest {
+
+    @Autowired
+    private CleaningServiceConfig cleaningServiceConfig;
 
     @Autowired
     private SpringBatchMetadataTableService springBatchMetadataTableService;
@@ -40,7 +46,7 @@ class SpringBatchMetadataTableServiceImplTest {
         final var initialJobInstances = jobExplorer.getJobInstances("testJob", 0, 5);
 
         // when
-        springBatchMetadataTableService.cleanMetadataTables(null, 30);
+        springBatchMetadataTableService.cleanMetadataTables(cleaningServiceConfig);
         final var jobsAfterCleanup = jobExplorer.getJobInstances("testJob", 0, 5);
 
         // then
@@ -55,4 +61,5 @@ class SpringBatchMetadataTableServiceImplTest {
         assertThat(jobsAfterCleanup.size()).isEqualTo(1);
         assertThat(jobsAfterCleanup.getFirst().getInstanceId()).isEqualTo(104);
     }
+
 }
