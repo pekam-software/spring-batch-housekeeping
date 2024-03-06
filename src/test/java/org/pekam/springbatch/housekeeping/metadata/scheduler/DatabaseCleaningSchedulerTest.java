@@ -11,7 +11,8 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import javax.sql.DataSource;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest(
         classes = { DatabaseCleaningScheduler.class, SpringBatchMetadataTableServiceImpl.class }
