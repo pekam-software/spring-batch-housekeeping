@@ -27,6 +27,7 @@ dependencies {
     testImplementation("org.springframework.batch:spring-batch-test:5.1.1")
 
     testImplementation("com.h2database:h2:2.2.224")
+    testImplementation("org.flywaydb:flyway-core:10.9.0")
 
     testImplementation(platform("org.junit:junit-bom:$jUnitVersion"))
     testImplementation("org.junit.jupiter:junit-jupiter:$jUnitVersion")
