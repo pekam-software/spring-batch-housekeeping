@@ -30,7 +30,7 @@ publishing {
     }
 }
 
-group = "org.pekam.springbatch"
+group = "io.github.pekam-software"
 version = "1.0-SNAPSHOT"
 
 repositories {
