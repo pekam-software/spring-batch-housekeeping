@@ -3,7 +3,7 @@ val springBootVersion = "3.2.3"
 val jUnitVersion = "5.10.2"
 
 plugins {
-    id("org.springframework.boot") version "3.2.3"
+    id("org.springframework.boot") version "3.2.3" apply false
     id("io.freefair.lombok") version "8.6"
     id("maven-publish")
     id("java-library")
@@ -31,6 +31,12 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:$jUnitVersion"))
     testImplementation("org.junit.jupiter:junit-jupiter:$jUnitVersion")
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 tasks.test {
