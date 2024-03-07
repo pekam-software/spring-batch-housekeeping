@@ -7,7 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Publish package to the Maven Central Repository and GitHub Packages
+name: Publish
 on:
   release:
     types: [created]

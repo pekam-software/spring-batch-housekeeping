@@ -1,4 +1,9 @@
 # spring-batch-housekeeping
+
+[![CI](https://github.com/pekam-software/spring-batch-housekeeping/actions/workflows/gradle.yml/badge.svg)](https://github.com/pekam-software/spring-batch-housekeeping/actions/workflows/gradle.yml)
+[![CodeQL](https://github.com/pekam-software/spring-batch-housekeeping/actions/workflows/codeql.yml/badge.svg)](https://github.com/pekam-software/spring-batch-housekeeping/actions/workflows/codeql.yml)
+[![Publish](https://github.com/pekam-software/spring-batch-housekeeping/actions/workflows/publish.yml/badge.svg)](https://github.com/pekam-software/spring-batch-housekeeping/actions/workflows/publish.yml)
+
 A small library containing useful code for Spring Batch housekeeping making its performance better.
 
 ## Spring Batch Metadata Tables Housekeeping
