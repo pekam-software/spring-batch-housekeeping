@@ -1,2 +1,2 @@
-rootProject.name = "SpringBatchHousekeeping"
+rootProject.name = "spring-batch-housekkeping"
 

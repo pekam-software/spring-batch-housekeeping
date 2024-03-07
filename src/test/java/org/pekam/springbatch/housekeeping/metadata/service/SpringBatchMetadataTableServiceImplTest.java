@@ -1,9 +1,7 @@
-package org.pekam.springbatch.housekeeping.metadata.persistence;
+package org.pekam.springbatch.housekeeping.metadata.service;
 
 import org.junit.jupiter.api.Test;
 import org.pekam.springbatch.housekeeping.metadata.config.CleaningServiceConfig;
-import org.pekam.springbatch.housekeeping.metadata.service.SpringBatchMetadataTableService;
-import org.pekam.springbatch.housekeeping.metadata.service.SpringBatchMetadataTableServiceImpl;
 import org.springframework.batch.core.JobInstance;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.beans.factory.annotation.Autowired;
