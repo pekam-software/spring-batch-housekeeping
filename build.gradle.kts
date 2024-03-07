@@ -4,6 +4,7 @@ val jUnitVersion = "5.10.2"
 
 plugins {
     id("org.springframework.boot") version "3.2.3" apply false
+    id("org.shipkit.shipkit-auto-version") version "2.0.4"
     id("io.freefair.lombok") version "8.6"
     id("maven-publish")
     id("java-library")
