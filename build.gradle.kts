@@ -8,6 +8,7 @@ plugins {
     id("io.freefair.lombok") version "8.6"
     id("maven-publish")
     id("java-library")
+    signing
 }
 
 publishing {
@@ -32,7 +33,7 @@ publishing {
 }
 
 group = "io.github.pekam-software"
-version = "1.0-SNAPSHOT"
+version = "0.0.2-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -56,9 +57,62 @@ dependencies {
 }
 
 java {
+    withJavadocJar()
+    withSourcesJar()
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "spring-batch-housekeeping"
+            from(components["java"])
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = "Spring Batch Housekeeping"
+                description = "A library for improving the performance of Spring Batch"
+                url = "https://github.com/pekam-software/spring-batch-housekeeping"
+                licenses {
+                    license {
+                        name = "GNU GENERAL PUBLIC LICENSE, Version 3.0"
+                        url = "https://www.gnu.org/licenses/gpl-3.0.html"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "violence102"
+                        name = "Przemysław Zajadlak"
+                        email = "przemyslaw.zajadlak@gmail.com"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://pekam-software/spring-batch-housekeeping.git"
+                    developerConnection = "scm:git:ssh://pekam-software/spring-batch-housekeeping.git"
+                    url = "https://github.com/pekam-software/spring-batch-housekeeping"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            val releasesRepoUrl = uri(layout.buildDirectory.dir("https://github.com/pekam-software/spring-batch-housekeeping/releases"))
+            val snapshotsRepoUrl = uri(layout.buildDirectory.dir("https://github.com/pekam-software/spring-batch-housekeeping/snapshots"))
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications["mavenJava"])
 }
 
 tasks.test {
