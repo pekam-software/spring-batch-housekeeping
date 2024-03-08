@@ -4,7 +4,6 @@ val jUnitVersion = "5.10.2"
 
 plugins {
     id("org.springframework.boot") version "3.2.3" apply false
-    id("org.shipkit.shipkit-auto-version") version "2.0.4"
     id("io.freefair.lombok") version "8.6"
     id("maven-publish")
     id("java-library")
@@ -33,7 +32,7 @@ publishing {
 }
 
 group = "io.github.pekam-software"
-version = "0.0.2-SNAPSHOT"
+version = "0.0.3-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -104,8 +103,8 @@ publishing {
     }
     repositories {
         maven {
-            val releasesRepoUrl = uri(layout.buildDirectory.dir("https://github.com/pekam-software/spring-batch-housekeeping/releases"))
-            val snapshotsRepoUrl = uri(layout.buildDirectory.dir("https://github.com/pekam-software/spring-batch-housekeeping/snapshots"))
+            val releasesRepoUrl = uri("https://github.com/pekam-software/spring-batch-housekeeping/releases")
+            val snapshotsRepoUrl = uri("https://github.com/pekam-software/spring-batch-housekeeping/snapshots")
             url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
         }
     }
